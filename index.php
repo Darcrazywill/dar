@@ -1,90 +1,61 @@
-<?php
-// 1. array_map: ['a','b','c','d','e'] -> ['A','B','C','D','E']
-$letters = ['a', 'b', 'c', 'd', 'e'];
-$upperLetters = array_map('strtoupper', $letters);
-print_r($upperLetters);
-echo "</br>";
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-// 2. count: вывести последний элемент массива
-$arr = [10, 20, 30, 40];
-$lastIndex = count($arr) - 1;
-echo $arr[$lastIndex] ."</br>" ;
+<div class="page">
+    <div class="card">
+        <h1 class="card__title">Регистрация</h1>
 
-// 3. Проверить, есть ли в массиве число 3
-$nums = [1, 2, 3, 4, 5];
-$pos3 = array_search(3, $nums);
-if ($pos3 !== false) {
-    echo "Есть 3, индекс: $pos3" . "</br>";
-} else {
-    echo "3 нет в массиве" . "</br>";
-}
+        <form class="form" action="action.php" method="POST">
+            <label class="form__group">
+                <span class="form__label">Имя:</span>
+                <input class="form__input" type="text" name="name" placeholder="Введите имя">
+            </label>
 
-// 4. Слить массивы [1,2,3] и ['a','b','c']
-$a1 = [1, 2, 3];
-$a2 = ['a', 'b', 'c'];
-$merged = array_merge($a1, $a2);
-print_r($merged);
-echo "</br>";
-// 5. array_slice: из [1,2,3,4,5] получить [2,3,4]
-$src = [1, 2, 3, 4, 5];
-$result = array_slice($src, 1, 3);
-print_r($result);
-echo "</br>";
-// 6. array_keys / array_values
-$assoc = ['a' => 1, 'b' => 2, 'c' => 3];
-$keys = array_keys($assoc);
-$values = array_values($assoc);
-print_r($keys);
-echo "</br>";
-print_r($values);
-echo "</br>";
+            <label class="form__group">
+                <span class="form__label">Почта:</span>
+                <input class="form__input" type="email" name="email" placeholder="name@example.ru">
+            </label>
 
-// 7. array_combine: ['a','b','c'] и [1,2,3] -> ['a'=>1,'b'=>2,'c'=>3]
-$k = ['a', 'b', 'c'];
-$v = [1, 2, 3];
-$combined = array_combine($k, $v);
-print_r($combined);
-echo "</br>";
-// 8. array_search: позиция первого '-'
-$chars = ['a', '-', 'b', '-', 'c', '-', 'd'];
-$dashPos = array_search('-', $chars);
-echo "Первая '-' на позиции: $dashPos" . "</br>";
+            <label class="form__group">
+                <span class="form__label">Пароль:</span>
+                <input class="form__input" type="password" name="password" placeholder="Введите пароль">
+            </label>
+            <label class="form__group">
+        <span class="form__label">Пол:</span>
+        <select class="form__input" name="gender">
+            <option value="" selected disabled>Выберите пол</option>
+            <option value="female">Женский</option>
+            <option value="male">Мужской</option>
+            <option value="other">Другое</option>
+        </select>
+    </label>
+            <label class="form__group">
+                <span class="form__label">Подтвердите пароль:</span>
+                <input class="form__input" type="password" name="password_confirm" placeholder="Повторите пароль">
+            </label>
 
-// 9. Разные сортировки для массива с ключами
-$fruits = ['3' => 'a', '1' => 'c', '2' => 'e', '4' => 'b'];
+            <button class="form__submit" type="submit">Зарегистрироваться</button>
 
-$asort = $fruits;
-asort($asort);
-echo "asort: ";
-print_r($asort);
-echo "</br>";
-$ksort = $fruits;
-ksort($ksort);
-echo "ksort: ";
-print_r($ksort);
-echo "</br>";
+            <label class="form__agree">
+                <input type="checkbox" checked>
+                <span>
+                    Создавая учетную запись, вы соглашаетесь с нашим
+                    <a href="#">Условием и конфиденциальностью</a>.
+                </span>
+            </label>
+        </form>
+    </div>
+</div>
 
-$arsort = $fruits;
-arsort($arsort);
-echo "arsort: ";
-print_r($arsort);
-echo "</br>";
-// 10. Сумма цифр строки '1234567890' без цикла
-$str = '1234567890';
-$digits = str_split($str);
-$sum = array_sum($digits);
-echo "Сумма цифр: $sum" . "</br>";
+</body>
+</html>
 
-// 11. Заполнить массив 10-ю буквами 'x'
-$xs = array_fill(0, 10, 'x');
-print_r($xs);
-echo "</br>";
-// 12. Общие элементы двух массивов (пересечение)
-$a = [1, 2, 3, 4, 5];
-$b = [3, 4, 5, 6, 7];
-$common = array_intersect($a, $b);
-print_r($common);
 
-?>
 
 
