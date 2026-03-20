@@ -11,36 +11,39 @@ if ($name === '' || $email === '' || $gender === '' || $password === '' || $conf
     $errors[] = 'Все поля обязательны для заполнения.';
 }
 
-
-if ($name!=='Дарина')
-{
-    $errors[]='Имя должно быть Дарина';
+if ($name !== 'Дарина') {
+    $errors[] = 'Имя должно быть Дарина.';
 }
-if ($password!=='123')
-{
+
+if ($password !== '123') {
     $errors[] = 'Пароль должен быть 123.';
 }
-if ($password !== $confirm)
-{
+
+if ($password !== $confirm) {
     $errors[] = 'Пароль и подтверждение пароля не совпадают.';
 }
-?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Проверка регистрации</title>
-</head>
-<body>
-<?php if ($errors): ?>
+
+if ($errors) {
+    // есть ошибки – показываем страницу с ошибками
+    ?>
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Проверка регистрации</title>
+    </head>
+    <body>
     <h2>Ошибки:</h2>
     <ul>
         <?php foreach ($errors as $e): ?>
             <li><?= htmlspecialchars($e, ENT_QUOTES, 'UTF-8') ?></li>
         <?php endforeach; ?>
     </ul>
-<?php else: ?>
-    <h2>Все проверки пройдены!</h2>
-<?php endif; ?>
-</body>
-</html>
+    </body>
+    </html>
+    <?php
+} else {
+    // ошибок нет – подключаем калькулятор
+    require 'calculator.php';
+}
+
