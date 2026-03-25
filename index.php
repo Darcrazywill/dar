@@ -64,5 +64,25 @@
 //}
 //else echo "Папка переименован";
 
-rmdir("/var/www/Кокорева.ru/www");
+//rmdir("/var/www/Кокорева.ru/www");
+
+//mkdir("/var/www/Кокорева.ru/test");
+
+$mainPath = "/var/www/Кокорева.ru/test";
+$folders = ["str1", "str2", "str3"];
+
+foreach ($folders as $folder) {
+    $path = $mainPath . "/" . $folder;
+
+    if (!is_dir($path)) {
+        if (!@mkdir($path, 0777)) {
+            echo "Ошибка mkdir " . "<br>";
+        } else {
+            echo "Создано: $path<br>";
+        }
+    } else {
+        echo "Уже существует: $path<br>";
+    }
+}
+
 ?>
