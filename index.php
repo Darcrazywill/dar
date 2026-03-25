@@ -18,7 +18,12 @@
 //    echo "Ошибка движения файла";
 //else echo "Файл перемещен";
    
-if (copy("folder/mir.txt", "folder/world.txt"))
-    echo "Копия файла создана";
-else echo "Ошибка копирования файла";
+//if (copy("folder/mir.txt", "folder/world.txt"))
+//    echo "Копия файла создана";
+//else echo "Ошибка копирования файла";
+
+$file=filesize("folder/world.txt");
+echo $file. " " . "в байтах" . "</br>";
+echo $file/1024 . " " . "в мегабайтах" . "</br>";
+echo $file/1024/1024 . " " . "в гигабайтах" . "</br>";
 ?>
