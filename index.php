@@ -27,8 +27,32 @@
 //echo $file/1024 . " " . "в мегабайтах" . "</br>";
 //echo $file/1024/1024 . " " . "в гигабайтах" . "</br>";
 
-if (unlink("folder/world.txt"))
-    echo "Файл удален";
-else echo "Ошибка при удалении файла";
+//if (unlink("folder/world.txt"))
+//    echo "Файл удален";
+//else echo "Ошибка при удалении файла";
 
+$file1 = "folder/world.txt";
+$file2 = "folder/mir.txt";
+if(file_exists($file1)==true)
+{
+    if(file_exists($file2)==true)
+    {
+        echo "оба файла существуют";
+    }
+    else 
+    {
+        echo "world - есть, mir - нет";
+    }
+}
+else
+{
+    if(file_exists($file2)==true)
+    {
+        echo "world - нет, mir - есть";
+    }
+    else 
+    {
+        echo "оба файла отсутствуют";
+    }
+}
 ?>
