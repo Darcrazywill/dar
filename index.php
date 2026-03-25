@@ -68,20 +68,39 @@
 
 //mkdir("/var/www/Кокорева.ru/test");
 
-$mainPath = "/var/www/Кокорева.ru/test";
-$folders = ["str1", "str2", "str3"];
+//$mainPath = "/var/www/Кокорева.ru/test";
+//$folders = ["str1", "str2", "str3"];
+//
+//foreach ($folders as $folder) {
+//    $path = $mainPath . "/" . $folder;
+//
+//    if (!is_dir($path)) {
+//        if (!@mkdir($path, 0777)) {
+//            echo "Ошибка mkdir " . "<br>";
+//        } else {
+//            echo "Создано: $path<br>";
+//        }
+//    } else {
+//        echo "Уже существует: $path<br>";
+//    }
+//}
 
-foreach ($folders as $folder) {
-    $path = $mainPath . "/" . $folder;
+$dir = getcwd(); 
+ 
+if (is_dir($dir))
+{
+    if ($dh = opendir($dir)) 
+    {
+        while (($file = readdir($dh)) !== false)
+        {
+            if($file=='.' || $file=='..') continue;
+             $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-    if (!is_dir($path)) {
-        if (!@mkdir($path, 0777)) {
-            echo "Ошибка mkdir " . "<br>";
-        } else {
-            echo "Создано: $path<br>";
+            if (is_file($dir . '/' . $file) && $ext === 'jpeg') {
+                echo "jpеg-файл: $file <br>";
+            }
         }
-    } else {
-        echo "Уже существует: $path<br>";
+        closedir($dh); 
     }
 }
 
