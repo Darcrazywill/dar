@@ -13,10 +13,12 @@
 //else echo "Файл переименован";
 //
 
-mkdir("/var/www/Кокорева.ru/folder");
-if (!rename("mir.txt", "folder/mir.txt"))
-    echo "Ошибка движения файла";
-else echo "Файл перемещен";
+//mkdir("/var/www/Кокорева.ru/folder");
+//if (!rename("mir.txt", "folder/mir.txt"))
+//    echo "Ошибка движения файла";
+//else echo "Файл перемещен";
    
-
+if (copy("folder/mir.txt", "folder/world.txt"))
+    echo "Копия файла создана";
+else echo "Ошибка копирования файла";
 ?>
