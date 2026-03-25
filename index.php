@@ -56,6 +56,13 @@
     //}
 //}
 
-mkdir("/var/www/Кокорева.ru/test_folder");
+//mkdir("/var/www/Кокорева.ru/test");
+//
+if (!rename ( "/var/www/Кокорева.ru/test" , "/var/www/Кокорева.ru/www"))
+{
+echo "Ошибка переименования папки";
+}
+else echo "Папка переименован";
+
 
 ?>
