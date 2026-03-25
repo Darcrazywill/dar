@@ -22,8 +22,13 @@
 //    echo "Копия файла создана";
 //else echo "Ошибка копирования файла";
 
-$file=filesize("folder/world.txt");
-echo $file. " " . "в байтах" . "</br>";
-echo $file/1024 . " " . "в мегабайтах" . "</br>";
-echo $file/1024/1024 . " " . "в гигабайтах" . "</br>";
+//$file=filesize("folder/world.txt");
+//echo $file. " " . "в байтах" . "</br>";
+//echo $file/1024 . " " . "в мегабайтах" . "</br>";
+//echo $file/1024/1024 . " " . "в гигабайтах" . "</br>";
+
+if (unlink("folder/world.txt"))
+    echo "Файл удален";
+else echo "Ошибка при удалении файла";
+
 ?>
