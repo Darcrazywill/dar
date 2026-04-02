@@ -11,7 +11,18 @@ class Worker
         $this->age = $age;
         $this->salary = $salary;
     }
-    
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function getAge()
+    {
+        return $this->age;
+    }
+    public function getSalary()
+    {
+        return $this->salary;
+    }
 }
 
 $firstWorker = new Worker("Миша", 32, 1500);
@@ -25,6 +36,10 @@ $sumAges = $firstWorker->age + $secondWorker->age;
 $sumSalaries = $firstWorker->salary + $secondWorker->salary;
 echo "<br>Сумма возрастов: " . $sumAges;
 echo "<br>Сумма зарплат: " . $sumSalaries;
+echo "<br>GetName(firstWorker): " . $firstWorker->getName();
+echo "<br>GetAge(secondWorker): " . $secondWorker->getAge();
+echo "<br>GetSalary(firstWorker): " . $firstWorker->getSalary();
+
 
 ?> 
 
