@@ -16,4 +16,6 @@ config.php
 # Игнорирование папки с зависимостями
 /vendor/
 /laba10/
-
+/laba11/
+/folder/
+/test/
