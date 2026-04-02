@@ -2,7 +2,7 @@
 class Worker
 {
     public $name;
-    public $age;
+    private $age;
     public $salary;
 
     public function __construct($name, $age, $salary)
@@ -15,31 +15,33 @@ class Worker
     {
         return $this->name;
     }
-    public function getAge()
+    public function setAge($newAge)
     {
-        return $this->age;
+        $this->age = $newAge;
     }
-    public function getSalary()
+    
+    public function getSalary($worker)
     {
-        return $this->salary;
+        return $this->salary+$worker->salary;
     }
 }
 
 $firstWorker = new Worker("Миша", 32, 1500);
 $secondWorker = new Worker("Маша", 20, 3500);
 
-echo "имя: " . $firstWorker->name . ", возраст: " . $firstWorker->age . ", зарплата: " . $firstWorker->salary;
- 
-echo " имя: " . $secondWorker->name . ", возраст: " . $secondWorker->age . ", зарплата: " . $secondWorker->salary;
+//echo "имя: " . $firstWorker->name . ", возраст: " . $firstWorker->age . ", зарплата: " . $firstWorker->salary;
+// 
+//echo " имя: " . $secondWorker->name . ", возраст: " . $secondWorker->age . ", зарплата: " . $secondWorker->salary;
 
-$sumAges = $firstWorker->age + $secondWorker->age;
+//$sumAges = $firstWorker->age + $secondWorker->age;
 $sumSalaries = $firstWorker->salary + $secondWorker->salary;
 echo "<br>Сумма возрастов: " . $sumAges;
 echo "<br>Сумма зарплат: " . $sumSalaries;
 echo "<br>GetName(firstWorker): " . $firstWorker->getName();
-echo "<br>GetAge(secondWorker): " . $secondWorker->getAge();
-echo "<br>GetSalary(firstWorker): " . $firstWorker->getSalary();
-
-
+//echo "<br>GetAge(secondWorker): " . $secondWorker->getAge();
+//echo "<br>GetSalary(firstWorker): " . $firstWorker->getSalary();
+echo "<br>Сумма зарплат: " . $firstWorker->getSalary($secondWorker);
+$secondWorker->setAge(8);
+echo "<br>Возраст второго работника изменен методом setAge.";
 ?> 
 
