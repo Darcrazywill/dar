@@ -15,6 +15,14 @@ class Worker
     {
         return $this->name;
     }
+    public function checkAge()
+    {
+        if ($this->age>=18)
+        {
+            return true;
+        }
+        else return false;
+    }
     public function setAge($newAge)
     {   
         if ($newAge<18)
@@ -50,7 +58,7 @@ echo "<br>GetName(firstWorker): " . $firstWorker->getName();
 //echo "<br>GetAge(secondWorker): " . $secondWorker->getAge();
 //echo "<br>GetSalary(firstWorker): " . $firstWorker->getSalary();
 echo "<br>Сумма зарплат: " . $firstWorker->getSalary($secondWorker);
-$secondWorker->setAge(8);
-
+$secondWorker->setAge(9);
+echo "<br>" . $firstWorker->checkAge();
 ?> 
 
