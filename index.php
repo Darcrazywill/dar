@@ -1,15 +1,30 @@
 <?php
+//try {
+//    $filename = 'no_such_file.txt';
+//    $handle = fopen($filename, 'r'); // вернет false, если файла нет
+//
+//    if (!$handle) {
+//        throw new Exception("Не удалось открыть файл: $filename");
+//    }
+//
+//    fclose($handle);
+//} catch (Exception $ex) {
+//    echo 'Исключение: ' . $ex->getMessage();
+//}
 try {
-    $filename = 'no_such_file.txt';
-    $handle = fopen($filename, 'r'); // вернет false, если файла нет
+    $a = 10;
+    $b = 0;
 
-    if (!$handle) {
-        throw new Exception("Не удалось открыть файл: $filename");
+    if ($b == 0) {
+        throw new Exception('Деление на ноль запрещено');
     }
 
-    fclose($handle);
+    $result = $a / $b;
+    echo "Результат: $result";
 } catch (Exception $ex) {
-    echo 'Исключение: ' . $ex->getMessage();
+    $msg = date('Y-m-d H:i:s') . ' - Ошибка: ' . $ex->getMessage() . PHP_EOL;
+    file_put_contents('log.txt', $msg, FILE_APPEND);
+    echo 'Произошла ошибка, см. log.txt';
 }
 ?> 
 
