@@ -11,20 +11,36 @@
 //} catch (Exception $ex) {
 //    echo 'Исключение: ' . $ex->getMessage();
 //}
-try {
-    $a = 10;
-    $b = 0;
+//try {
+//    $a = 10;
+//    $b = 0;
+//
+//    if ($b == 0) {
+//        throw new Exception('Деление на ноль запрещено');
+//    }
+//
+//    $result = $a / $b;
+//    echo "Результат: $result";
+//} catch (Exception $ex) {
+//    $msg = date('Y-m-d H:i:s') . ' - Ошибка: ' . $ex->getMessage() . PHP_EOL;
+//    file_put_contents('log.txt', $msg, FILE_APPEND);
+//    echo 'Произошла ошибка, см. log.txt';
+//}
+$countries = [
+    'Spain'  => 'Madrid',
+    'Russia' => 'Moscow'
+];
 
-    if ($b == 0) {
-        throw new Exception('Деление на ноль запрещено');
+try {
+    $key = 'Germany';
+
+    if (!array_key_exists($key, $countries)) {
+        throw new Exception("Элемент с ключом '$key' не найден в массиве");
     }
 
-    $result = $a / $b;
-    echo "Результат: $result";
+    echo $countries[$key];
 } catch (Exception $ex) {
-    $msg = date('Y-m-d H:i:s') . ' - Ошибка: ' . $ex->getMessage() . PHP_EOL;
-    file_put_contents('log.txt', $msg, FILE_APPEND);
-    echo 'Произошла ошибка, см. log.txt';
+    echo 'Исключение: ' . $ex->getMessage();
 }
 ?> 
 
