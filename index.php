@@ -15,26 +15,27 @@ class Worker
     {
         return $this->name;
     }
-    public function checkAge()
+    private function checkAge($age)
     {
-        if ($this->age>=18)
-        {
-            return true;
-        }
-        else return false;
-    }
-    public function setAge($newAge)
-    {   
-        if ($newAge<18)
-        {
-            echo "<br>Вам еще рано с нами работать";
+        if ($age>=18)
+        {   
+            $this->age = $age;
+            echo "<br>Возраст был изменен"; 
         }
         else 
         {
-            $this->age = $newAge;   
-            echo "<br>Возраст второго работника изменен методом setAge.";
-
+             echo "<br>Вам еще рано с нами работать";
         }
+    }
+    public function getAge() //нужно так как поле приватное
+    {
+        return $this->age;
+    }
+    public function setAge($newAge)
+    {   
+        
+            $this->checkAge($newAge);
+       
     }
     
     public function getSalary($worker)
@@ -52,13 +53,19 @@ $secondWorker = new Worker("Маша", 20, 3500);
 
 //$sumAges = $firstWorker->age + $secondWorker->age;
 $sumSalaries = $firstWorker->salary + $secondWorker->salary;
-echo "<br>Сумма возрастов: " . $sumAges;
+//echo "<br>Сумма возрастов: " . $sumAges;
 echo "<br>Сумма зарплат: " . $sumSalaries;
 echo "<br>GetName(firstWorker): " . $firstWorker->getName();
 //echo "<br>GetAge(secondWorker): " . $secondWorker->getAge();
 //echo "<br>GetSalary(firstWorker): " . $firstWorker->getSalary();
 echo "<br>Сумма зарплат: " . $firstWorker->getSalary($secondWorker);
+//$secondWorker->setAge(9);
+//echo "<br>" . $firstWorker->checkAge();
+//echo "<br>" . $firstWorker->setAge(20);
 $secondWorker->setAge(9);
-echo "<br>" . $firstWorker->checkAge();
+$firstWorker->setAge(20);
+echo "<br>Возраст первого работника: " . $firstWorker->getAge();
+echo "<br>Возраст второго работника: " . $secondWorker->getAge();
+
 ?> 
 
