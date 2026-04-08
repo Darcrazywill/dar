@@ -285,11 +285,6 @@ class MainPage extends Page
         <div class="main-page">
             <div class="topbar">
                 <div class="logo"><span>Game</span><span>Zone</span></div>
-
-                <div class="nav">
-                    <a href="?page=main">Главная</a>
-                    <a href="?page=blog">Блог</a>
-                </div>
             </div>
 
             <section class="hero">
@@ -307,7 +302,8 @@ class MainPage extends Page
 
                     <div class="hero__actions">
                         <a class="btn btn--red" href="?page=blog">Открыть блог</a>
-                        <a class="btn btn--blue" href="?page=blog">Смотреть карточки</a>
+                        <a class="btn btn--blue" href="?page=reviews">Открыть отзывы</a>
+
                     </div>
                 </div>
 
@@ -548,11 +544,271 @@ class BlogPage extends Page
     }
 }
 
+class ReviewsPage extends Page
+{
+    public function __construct()
+    {
+        $template = '
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 40px;
+                font-family: Arial, sans-serif;
+                background: linear-gradient(180deg, #0b1120 0%, #111827 55%, #0f172a 100%);
+                color: #f8fafc;
+            }
+
+            .back-link {
+                display: inline-block;
+                margin-bottom: 24px;
+                color: #60a5fa;
+                text-decoration: none;
+                font-weight: bold;
+                transition: 0.2s;
+            }
+
+            .back-link:hover {
+                color: #93c5fd;
+            }
+
+            .reviews-header {
+                margin-bottom: 34px;
+            }
+
+            .reviews-title {
+                margin: 0 0 12px;
+                font-size: 42px;
+                color: #f8fafc;
+            }
+
+            .reviews-title .red {
+                color: #f87171;
+            }
+
+            .reviews-title .blue {
+                color: #60a5fa;
+            }
+
+            .reviews-text {
+                margin: 0;
+                max-width: 760px;
+                color: #94a3b8;
+                font-size: 17px;
+                line-height: 1.7;
+            }
+
+            .reviews-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 24px;
+                margin-top: 30px;
+            }
+
+            .review-card {
+                flex: 1 1 320px;
+                min-width: 280px;
+                background: #161b22;
+                border: 1px solid #263041;
+                border-radius: 18px;
+                padding: 24px;
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .review-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 18px 36px rgba(0, 0, 0, 0.36);
+            }
+
+            .review-card__top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 18px;
+            }
+
+            .review-card__avatar {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 22px;
+                font-weight: bold;
+                color: #fff;
+            }
+
+            .review-card__avatar.red {
+                background: linear-gradient(135deg, #ef4444, #991b1b);
+            }
+
+            .review-card__avatar.blue {
+                background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            }
+
+            .review-card__stars {
+                font-size: 18px;
+                letter-spacing: 2px;
+                color: #facc15;
+            }
+
+            .review-card__text {
+                margin: 0 0 20px;
+                color: #cbd5e1;
+                line-height: 1.75;
+                font-size: 15px;
+            }
+
+            .review-card__name {
+                margin: 0 0 6px;
+                font-size: 18px;
+                color: #ffffff;
+            }
+
+            .review-card__role {
+                color: #94a3b8;
+                font-size: 14px;
+            }
+
+            .stats {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 18px;
+                margin-top: 34px;
+            }
+
+            .stat-box {
+                flex: 1 1 180px;
+                background: rgba(255,255,255,0.03);
+                border: 1px solid #263041;
+                border-radius: 16px;
+                padding: 18px 20px;
+            }
+
+            .stat-box__value {
+                font-size: 28px;
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+
+            .stat-box__value.red {
+                color: #f87171;
+            }
+
+            .stat-box__value.blue {
+                color: #60a5fa;
+            }
+
+            .stat-box__label {
+                color: #94a3b8;
+                font-size: 14px;
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding: 24px 18px;
+                }
+
+                .reviews-title {
+                    font-size: 34px;
+                }
+            }
+        </style>
+
+        <a class="back-link" href="?page=main">← Назад на главную</a>
+
+        <div class="reviews-header">
+            <h1 class="reviews-title">Отзывы <span class="red">игроков</span> и <span class="blue">читателей</span></h1>
+            <p class="reviews-text">
+                Здесь собраны впечатления посетителей о мрачной атмосфере сайта, подборке игровых серий и общем визуальном стиле страницы.
+            </p>
+        </div>
+
+        <div class="reviews-grid">
+
+            <div class="review-card">
+                <div class="review-card__top">
+                    <div class="review-card__avatar red">A</div>
+                    <div class="review-card__stars">★★★★★</div>
+                </div>
+
+                <p class="review-card__text">
+                    Очень понравился общий стиль страницы. Тёмная тема, красные акценты и карточки по хоррор-играм смотрятся атмосферно и аккуратно.
+                </p>
+
+                <h3 class="review-card__name">Anna</h3>
+                <div class="review-card__role">Фанат survival horror</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-card__top">
+                    <div class="review-card__avatar blue">M</div>
+                    <div class="review-card__stars">★★★★★</div>
+                </div>
+
+                <p class="review-card__text">
+                    Больше всего зашла страница блога. Карточки выглядят современно, а переходы между разделами сделаны просто и понятно.
+                </p>
+
+                <h3 class="review-card__name">Max</h3>
+                <div class="review-card__role">Любитель экшен-игр</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-card__top">
+                    <div class="review-card__avatar red">K</div>
+                    <div class="review-card__stars">★★★★☆</div>
+                </div>
+
+                <p class="review-card__text">
+                    Хорошая учебная работа: есть главная, блог и отдельная страница отзывов. Особенно нравится единый тёмный стиль во всех разделах.
+                </p>
+
+                <h3 class="review-card__name">Kirill</h3>
+                <div class="review-card__role">Читатель игрового блога</div>
+            </div>
+
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-box__value red">4.8/5</div>
+                <div class="stat-box__label">Средняя оценка дизайна</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-box__value blue">3</div>
+                <div class="stat-box__label">Тематические страницы</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-box__value red">100%</div>
+                <div class="stat-box__label">Единый визуальный стиль</div>
+            </div>
+        </div>
+        ';
+
+        parent::__construct('reviews', $template);
+    }
+}
+
+
+
 $pageName = $_GET['page'] ?? 'main';
 
 if ($pageName === 'blog') {
     $page = new BlogPage();
-} else {
+} 
+else if ($pageName === 'reviews')
+{
+    $page = new ReviewsPage();
+}
+else {
     $page = new MainPage();
 }
 
