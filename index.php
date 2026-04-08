@@ -1,146 +1,22 @@
 <?php
-//try {
-//    $filename = 'no_such_file.txt';
-//    $handle = fopen($filename, 'r'); // вернет false, если файла нет
-//
-//    if (!$handle) {
-//        throw new Exception("Не удалось открыть файл: $filename");
-//    }
-//
-//    fclose($handle);
-//} catch (Exception $ex) {
-//    echo 'Исключение: ' . $ex->getMessage();
-//}
-//try {
-//    $a = 10;
-//    $b = 0;
-//
-//    if ($b == 0) {
-//        throw new Exception('Деление на ноль запрещено');
-//    }
-//
-//    $result = $a / $b;
-//    echo "Результат: $result";
-//} catch (Exception $ex) {
-//    $msg = date('Y-m-d H:i:s') . ' - Ошибка: ' . $ex->getMessage() . PHP_EOL;
-//    file_put_contents('log.txt', $msg, FILE_APPEND);
-//    echo 'Произошла ошибка, см. log.txt';
-//}
-//$countries = [
-//    'Spain'  => 'Madrid',
-//    'Russia' => 'Moscow'
-//];
-//
-//try {
-//    $key = 'Germany';
-//
-//    if (!array_key_exists($key, $countries)) {
-//        throw new Exception("Элемент с ключом '$key' не найден в массиве");
-//    }
-//
-//    echo $countries[$key];
-//} catch (Exception $ex) {
-//    echo 'Исключение: ' . $ex->getMessage();
-//}
-echo mktime(10, 25, 0, 3, 15, 2025) . PHP_EOL;
-$past = mktime(8, 5, 59, 10, 2, 1990);
-$now  = time();
-echo $now - $past . PHP_EOL;
-echo date('Y.m.d H:i:s') . PHP_EOL;
-$currentYear = date('Y');
-echo date('Y.m.d', mktime(0, 0, 0, 9, 1, $currentYear)). PHP_EOL;
-
-$timestamp = mktime(0, 0, 0, 2, 2, 2000);
-$weekDays = [
-    'Sunday'    => 'Воскресенье',
-    'Monday'    => 'Понедельник',
-    'Tuesday'   => 'Вторник',
-    'Wednesday' => 'Среда',
-    'Thursday'  => 'Четверг',
-    'Friday'    => 'Пятница',
-    'Saturday'  => 'Суббота',
-];
-
-$eng = date('l', $timestamp); // полное английское имя дня
-echo $weekDays[$eng]. '<br>';
-
-
-$week = [
-    'Sunday'    => 'Воскресенье',
-    'Monday'    => 'Понедельник',
-    'Tuesday'   => 'Вторник',
-    'Wednesday' => 'Среда',
-    'Thursday'  => 'Четверг',
-    'Friday'    => 'Пятница',
-    'Saturday'  => 'Суббота',
-];
-
-// текущий день недели
-$currentEng = date('l');
-echo 'Сегодня: ' . $week[$currentEng] . '<br>';
-
-// день недели 12.06.2016
-$ts2016 = strtotime('2016-06-12');
-$eng2016 = date('l', $ts2016);
-echo '12.06.2016 был: ' . $week[$eng2016] . '<br>';
-
-
-$myBirthday = '2007-02-18';
-$tsBirthday = strtotime($myBirthday);
-$engBirthday = date('l', $tsBirthday);
-echo "В мой день рождения ($myBirthday) был: " . $week[$engBirthday];
-
-
-
-$result = '';
-
-if (!empty($_POST['date1']) && !empty($_POST['date2'])) {
-    $date1 = $_POST['date1']; 
-    $date2 = $_POST['date2'];
-
-    $ts1 = strtotime($date1);
-    $ts2 = strtotime($date2);
-
-    if ($ts1 === false || $ts2 === false) {
-        $result = 'Одна из дат некорректна';
-    } elseif ($ts1 > $ts2) {
-        $result = "Больше дата: $date1";
-    } elseif ($ts2 > $ts1) {
-        $result = "Больше дата: $date2";
-    } else {
-        $result = 'Даты равны';
+class Page
+{
+    private $name;
+    private $template;
+    public function __construct($name, $template)
+    {
+        $this->name = $name;
+        $this->template = $template;
     }
+
+    public function render()
+{
+    echo $this->template;
+
 }
+}
+$mainPage = new Page('page', '<div><p>It is a default page</p></div>');
+$mainPage->render();
+
+
 ?>
-
-<form method="post">
-    <label>Дата 1 : <input type="date" name="date1"></label><br>
-    <label>Дата 2 : <input type="date" name="date2"></label><br>
-    <button type="submit">Сравнить</button>
-</form>
-
-<?php
-if ($result !== '') {
-    echo $result . '<br>';
-}
-
-$date = '2000.02.03';
-$dt = date_create_from_format('Y.m.d', $date);
-
-date_modify($dt, '1 year 1 month 5 days');
-echo 'После +1 год 1 месяц 5 дней: ' . date_format($dt, 'Y.m.d') . '<br>';
-
-date_modify($dt, '-3 days');
-echo 'После -3 дня: ' . date_format($dt, 'Y.m.d') . '<br>';
-
-
-$now = time();
-$currentYear = date('Y');
-$newYearTs = mktime(0, 0, 0, 1, 1, $currentYear + 1);
-
-$diffSeconds = $newYearTs - $now;
-$days = floor($diffSeconds / (60 * 60 * 24));
-
-echo "До Нового Года осталось дней: $days";
-?> 
-
