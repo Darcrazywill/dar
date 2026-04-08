@@ -405,12 +405,26 @@ class BlogPage extends Page
     }
 
     .blog-card__image {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-        display: block;
-        border-bottom: 1px solid #263041;
-    }
+    width: 100%;
+    height: 220px;
+    border-bottom: 1px solid #263041;
+}
+
+/* чисто красная заливка */
+.blog-card__image--red {
+    background: linear-gradient(135deg, #ef4444, #7f1d1d);
+}
+
+/* чисто синяя заливка */
+.blog-card__image--blue {
+    background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+}
+
+/* красно‑синий градиент */
+.blog-card__image--redblue {
+    background: linear-gradient(135deg, #ef4444, #3b82f6);
+}
+
 
     .blog-card__content {
         padding: 22px;
@@ -486,7 +500,7 @@ class BlogPage extends Page
 <div class="cards">
 
     <div class="blog-card">
-        <img class="blog-card__image" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80" alt="Resident Evil cover">
+        <div class="blog-card__image blog-card__image--red"></div>
         <div class="blog-card__content">
             <h2 class="blog-card__title">Resident Evil</h2>
             <p class="blog-card__text">
@@ -503,7 +517,7 @@ class BlogPage extends Page
     </div>
 
     <div class="blog-card">
-        <img class="blog-card__image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Silent Hill cover">
+        <div class="blog-card__image blog-card__image--blue"></div>
         <div class="blog-card__content">
             <h2 class="blog-card__title">Silent Hill</h2>
             <p class="blog-card__text">
@@ -520,7 +534,7 @@ class BlogPage extends Page
     </div>
 
     <div class="blog-card">
-        <img class="blog-card__image" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80" alt="Devil May Cry cover">
+        <div class="blog-card__image blog-card__image--redblue"></div>
         <div class="blog-card__content">
             <h2 class="blog-card__title">Devil May Cry</h2>
             <p class="blog-card__text">
@@ -535,7 +549,6 @@ class BlogPage extends Page
             </div>
         </div>
     </div>
-
 </div>
 ';
 
